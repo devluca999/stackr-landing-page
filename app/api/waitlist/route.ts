@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic";
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -19,7 +21,6 @@ export async function POST(req: NextRequest) {
       .insert({ email: email.toLowerCase().trim(), source: "landing_page" });
 
     if (error) {
-      // Duplicate email — treat as success so we don't leak info
       if (error.code === "23505") {
         return NextResponse.json({ success: true, message: "Already on the list" });
       }
