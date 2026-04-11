@@ -14,6 +14,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            var t = localStorage.getItem('stackr-theme');
+            document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+          } catch(e) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        `}} />
       </head>
       <body>
         <div className="grain" aria-hidden="true" />
