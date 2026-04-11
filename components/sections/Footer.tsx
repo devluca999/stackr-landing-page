@@ -1,3 +1,5 @@
+"use client";
+
 export default function Footer() {
   return (
     <footer style={{ padding: "40px 48px", borderTop: "1px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>

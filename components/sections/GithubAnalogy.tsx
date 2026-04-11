@@ -1,3 +1,5 @@
+"use client";
+
 const pairs = [
   { left: "Repository", right: "Stack", desc: "A versioned, shareable collection" },
   { left: "Fork", right: "Clone", desc: "Copy and adapt for your biology" },

@@ -1,3 +1,5 @@
+"use client";
+
 const features = [
   { icon: "⬡", title: "Structured Stacks", desc: "Build protocols with compounds, dosages, timing, and cycling windows. No more scattered spreadsheets or Notion docs." },
   { icon: "◈", title: "Effect Tracking", desc: "Log results against your stack over time. Correlate compound changes with outcomes and optimize with data." },

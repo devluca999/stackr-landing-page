@@ -1,3 +1,5 @@
+"use client";
+
 const STACKS = [
   { name: "Morning Cognitive Protocol", author: "attia_longevity", compounds: 7, clones: 3841, tags: ["focus", "neuroprotection"] },
   { name: "Sleep + Recovery Stack", author: "biohack_daily", compounds: 5, clones: 2219, tags: ["sleep", "recovery"] },
