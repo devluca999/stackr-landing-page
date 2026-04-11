@@ -1,9 +1,10 @@
 import Nav from "@/components/sections/Nav";
 import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import GithubAnalogy from "@/components/sections/GithubAnalogy";
-import Community from "@/components/sections/Community";
-import WaitlistCTA from "@/components/sections/WaitlistCTA";
+import HowItWorks from "@/components/sections/HowItWorks";
+import FeaturedStacks from "@/components/sections/FeaturedStacks";
+import MidCTA from "@/components/sections/MidCTA";
+import Pricing from "@/components/sections/Pricing";
+import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -12,10 +13,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Features />
-        <GithubAnalogy />
-        <Community />
-        <WaitlistCTA />
+        <HowItWorks />
+        <FeaturedStacks />
+        <MidCTA />
+        <Pricing />
+        <FinalCTA />
       </main>
       <Footer />
     </>
