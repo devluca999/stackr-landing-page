@@ -13,9 +13,9 @@ const PLANS = [
     features:["Unlimited stacks","Full tracking & analytics","Unlimited cloning","AI protocol suggestions","Priority compound data","Export & share anywhere","7-day free trial"],
   },
   {
-    name:"Founder", price:"$4.99", period:"per month, locked forever", desc:"Early adopter rate. Never goes up.",
-    cta:"Claim Founder Spot", highlight:false, badge:"Limited",
-    features:["Everything in Pro","Founder badge on profile","Direct product input","Lifetime rate lock","Early feature access"],
+    name:"Early Optimizer", price:"$4.99", period:"per month, locked forever", desc:"Early adopter rate. Never goes up.",
+    cta:"Claim Early Optimizer Spot", highlight:false, badge:"Limited",
+    features:["Everything in Pro","Early Optimizer badge on profile","Direct product input","Lifetime rate lock","Early feature access"],
   },
 ];
 
@@ -33,7 +33,7 @@ export default function Pricing() {
       </div>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:18, alignItems:"start" }}>
         {PLANS.map((p,i) => (
-          <div key={i} style={{ padding:"32px 28px", borderRadius:18, background: p.highlight ? "var(--surface)" : "var(--surface)", border: p.highlight ? "1px solid rgba(255,106,0,0.35)" : "1px solid var(--border)", position:"relative", boxShadow: p.highlight ? "0 0 60px rgba(255,100,0,0.1)" : "none" }}>
+          <div key={i} style={{ padding:"32px 28px", borderRadius:18, background:"var(--surface)", border: p.highlight ? "1px solid rgba(255,106,0,0.35)" : "1px solid var(--border)", position:"relative", boxShadow: p.highlight ? "0 0 60px rgba(255,100,0,0.1)" : "none" }}>
             {p.badge && <div style={{ position:"absolute", top:-12, left:"50%", transform:"translateX(-50%)", padding:"4px 16px", borderRadius:20, background:"var(--gradient-h)", fontFamily:"Syne,sans-serif", fontWeight:700, fontSize:11, color:"white", letterSpacing:"0.06em", whiteSpace:"nowrap" }}>{p.badge}</div>}
             <div style={{ marginBottom:24 }}>
               <div className="font-display" style={{ fontWeight:700, fontSize:15, color:p.highlight?"var(--flame-3)":"var(--text-muted)", letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:10 }}>{p.name}</div>
