@@ -13,11 +13,21 @@ const SAMPLE_STACK = [
 
 export default function Hero() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -37,16 +47,19 @@ export default function Hero() {
         Build structured protocols. Track compound effects. Share stacks with the community. The GitHub for human optimization.
       </p>
       <div className="animate-slide-up delay-300" id="waitlist" style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", justifyContent: "center", marginBottom: 64 }}>
-        {!submitted ? (
+        {status === "success" ? (
+          <div style={{ padding: "14px 32px", borderRadius: 10, background: "var(--surface)", border: "1px solid var(--border)" }}>
+            <span className="flame-text font-display" style={{ fontWeight: 700, fontSize: 16 }}>You&apos;re in. We&apos;ll be in touch. 🔥</span>
+          </div>
+        ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
             <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required style={{ padding: "12px 18px", maxWidth: 280 }} />
-            <button type="submit" className="btn-flame" style={{ padding: "12px 28px" }}>Join Waitlist →</button>
+            <button type="submit" className="btn-flame" style={{ padding: "12px 28px", opacity: status === "loading" ? 0.7 : 1 }} disabled={status === "loading"}>
+              {status === "loading" ? "Joining..." : "Join Waitlist →"}
+            </button>
           </form>
-        ) : (
-          <div style={{ padding: "14px 32px", borderRadius: 10, background: "var(--surface)", border: "1px solid var(--border)" }}>
-            <span className="flame-text font-display" style={{ fontWeight: 700, fontSize: 16 }}>You&apos;re in. We&apos;ll be in touch.</span>
-          </div>
         )}
+        {status === "error" && <p style={{ fontSize: 13, color: "#FF3D00", width: "100%", textAlign: "center" }}>Something went wrong — try again.</p>}
       </div>
       <div className="animate-slide-up delay-500 animate-float" style={{ width: "100%", maxWidth: 480, background: "var(--surface)", borderRadius: 16, border: "1px solid var(--border)", padding: 24, boxShadow: "0 32px 80px rgba(0,0,0,0.08)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>

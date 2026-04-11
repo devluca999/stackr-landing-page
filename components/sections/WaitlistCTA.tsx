@@ -3,8 +3,23 @@ import { useState } from "react";
 
 export default function WaitlistCTA() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); if (email) setSubmitted(true); };
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section style={{ padding: "120px 24px", textAlign: "center", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,106,0,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -16,16 +31,19 @@ export default function WaitlistCTA() {
         <p style={{ fontFamily: "DM Sans, sans-serif", fontSize: 17, color: "var(--text-secondary)", lineHeight: 1.65, marginBottom: 48 }}>
           Join the waitlist. Early adopters get founding member status, unlimited stacks, and direct input into what we build next.
         </p>
-        {!submitted ? (
-          <form onSubmit={handleSubmit} style={{ display: "flex", gap: 10, maxWidth: 440, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
-            <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required style={{ flex: 1, minWidth: 220, padding: "14px 18px" }} />
-            <button type="submit" className="btn-flame" style={{ padding: "14px 32px" }}>Get Early Access</button>
-          </form>
-        ) : (
+        {status === "success" ? (
           <div className="flame-border" style={{ display: "inline-block", padding: "18px 40px", borderRadius: 12 }}>
             <span className="flame-text font-display" style={{ fontWeight: 700, fontSize: 18 }}>You&apos;re on the list. 🔥</span>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} style={{ display: "flex", gap: 10, maxWidth: 440, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
+            <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required style={{ flex: 1, minWidth: 220, padding: "14px 18px" }} />
+            <button type="submit" className="btn-flame" style={{ padding: "14px 32px", opacity: status === "loading" ? 0.7 : 1 }} disabled={status === "loading"}>
+              {status === "loading" ? "Joining..." : "Get Early Access"}
+            </button>
+          </form>
         )}
+        {status === "error" && <p style={{ fontSize: 13, color: "#FF3D00", marginTop: 12 }}>Something went wrong — try again.</p>}
         <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 48 }}>
           {[["10k+", "Waitlist"], ["500+", "Protocols ready"], ["40+", "Compounds"]].map(([n, l]) => (
             <div key={l}>
