@@ -32,8 +32,8 @@ export default function Home() {
         <div id="features"><HowItWorks /></div>
         <div id="stacks"><FeaturedStacks /></div>
         <Cycles />
-        <div id="compounds"><TrackingGraphs /></div>
-        <Glossary />
+        <TrackingGraphs />
+        <div id="compounds"><Glossary /></div>
         <MidCTA />
         <div id="pricing"><Pricing /></div>
         <div id="waitlist"><FinalCTA /></div>

@@ -132,7 +132,16 @@ export default function Glossary() {
         </div>
       )}
 
-      {/* Detail panel — also fully theme-aware */}
+      {/* In-context waitlist CTA when no compound selected */}
+      {!selected && (
+        <div style={{textAlign:"center", marginBottom:24}}>
+          <a href="#waitlist" className="btn-flame" style={{padding:"12px 32px", fontSize:14}}>
+            Build your stack in Stackr →
+          </a>
+        </div>
+      )}
+
+      {/* Detail panel */}
       {selected && (
         <div style={{
           padding:"28px",
