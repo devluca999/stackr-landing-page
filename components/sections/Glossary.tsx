@@ -82,55 +82,103 @@ export default function Glossary() {
   const selected = PEPTIDES.find(p=>p.name===active);
 
   return (
-    <section style={{padding:"120px 48px",maxWidth:1100,margin:"0 auto"}}>
-      <div style={{textAlign:"center",marginBottom:64}}>
-        <p style={{fontFamily:"DM Sans,sans-serif",fontSize:12,fontWeight:500,letterSpacing:"0.12em",color:"var(--flame-2)",textTransform:"uppercase",marginBottom:14}}>Compound Library</p>
-        <h2 className="font-display" style={{fontSize:"clamp(34px,5vw,54px)",fontWeight:800,color:"var(--text)",letterSpacing:"-0.03em",lineHeight:1.08}}>
+    <section id="compounds" style={{padding:"120px 48px", maxWidth:1100, margin:"0 auto"}}>
+      <div style={{textAlign:"center", marginBottom:64}}>
+        <p style={{fontFamily:"DM Sans,sans-serif", fontSize:12, fontWeight:500, letterSpacing:"0.12em", color:"var(--flame-2)", textTransform:"uppercase", marginBottom:14}}>Compound Library</p>
+        <h2 className="font-display" style={{fontSize:"clamp(34px,5vw,54px)", fontWeight:800, color:"var(--text)", letterSpacing:"-0.03em", lineHeight:1.08}}>
           Know your<br/><span className="flame-text">compounds.</span>
         </h2>
-        <p style={{fontFamily:"DM Sans,sans-serif",fontSize:16,color:"var(--text-secondary)",maxWidth:480,margin:"16px auto 0",lineHeight:1.65}}>
-          Every compound in Stackr comes with research-backed profiles — effects, dosing, cycles, and side effects. MT-I, MT-II, BPC-157, Semax and more.
+        <p style={{fontFamily:"DM Sans,sans-serif", fontSize:16, color:"var(--text-secondary)", maxWidth:480, margin:"16px auto 0", lineHeight:1.65}}>
+          Every compound in Stackr comes with research-backed profiles — effects, dosing, cycles, and side effects.
         </p>
       </div>
 
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))",gap:12,marginBottom:32}}>
-        {PEPTIDES.map(p=>(
-          <button key={p.name} onClick={()=>{setActive(active===p.name?null:p.name);setTab("effects");}}
-            style={{padding:"16px 14px",borderRadius:14,background:active===p.name?"var(--surface-2)":"var(--surface)",
-              border:active===p.name?`1px solid ${p.color}40`:"1px solid var(--border)",
-              cursor:"pointer",textAlign:"left",transition:"all 0.2s",
-              boxShadow:active===p.name?`0 0 20px ${p.color}18`:"var(--shadow-card)"}}>
-            <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:6}}>
-              <div style={{width:6,height:6,borderRadius:"50%",background:p.color,boxShadow:`0 0 5px ${p.color}`}}/>
-              <span style={{fontFamily:"Syne,sans-serif",fontWeight:700,fontSize:12,color:"var(--text)"}}>{p.name}</span>
-            </div>
-            <div style={{fontFamily:"DM Sans,sans-serif",fontSize:10,color:"var(--text-muted)",marginBottom:8,lineHeight:1.4}}>{p.category}</div>
-            <div style={{fontFamily:"DM Sans,sans-serif",fontSize:9,padding:"2px 7px",borderRadius:10,background:`${p.color}18`,color:p.color,border:`1px solid ${p.color}30`,display:"inline-block",letterSpacing:"0.04em"}}>{p.badge}</div>
-          </button>
-        ))}
+      {/* Compound grid — fully theme-aware */}
+      <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))", gap:12, marginBottom:32}}>
+        {PEPTIDES.map(p => {
+          const isActive = active === p.name;
+          return (
+            <button
+              key={p.name}
+              onClick={() => { setActive(isActive ? null : p.name); setTab("effects"); }}
+              style={{
+                padding:"16px 14px",
+                borderRadius:14,
+                // Use CSS vars so both modes work correctly
+                background: isActive ? "var(--surface-2)" : "var(--surface)",
+                border: isActive ? `1px solid ${p.color}50` : "1px solid var(--border)",
+                cursor:"pointer",
+                textAlign:"left",
+                transition:"all 0.2s",
+                boxShadow: isActive ? `0 0 24px ${p.color}20` : "var(--shadow-card)",
+              }}>
+              <div style={{display:"flex", alignItems:"center", gap:6, marginBottom:6}}>
+                <div style={{width:6, height:6, borderRadius:"50%", background:p.color, boxShadow:`0 0 5px ${p.color}`, flexShrink:0}}/>
+                {/* color:"var(--text)" ensures readable in both modes */}
+                <span style={{fontFamily:"Syne,sans-serif", fontWeight:700, fontSize:12, color:"var(--text)"}}>{p.name}</span>
+              </div>
+              <div style={{fontFamily:"DM Sans,sans-serif", fontSize:10, color:"var(--text-muted)", marginBottom:8, lineHeight:1.4}}>{p.category}</div>
+              <div style={{fontFamily:"DM Sans,sans-serif", fontSize:9, padding:"2px 7px", borderRadius:10, background:`${p.color}15`, color:p.color, border:`1px solid ${p.color}30`, display:"inline-block", letterSpacing:"0.04em"}}>{p.badge}</div>
+            </button>
+          );
+        })}
       </div>
 
+      {/* Detail panel — also fully theme-aware */}
       {selected && (
-        <div style={{padding:"28px",borderRadius:18,background:"var(--surface)",border:`1px solid ${selected.color}30`,boxShadow:`0 8px 40px rgba(0,0,0,0.3), 0 0 60px ${selected.color}10`,transition:"all 0.3s"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
+        <div style={{
+          padding:"28px",
+          borderRadius:18,
+          // theme-aware background
+          background:"var(--surface)",
+          border:`1px solid ${selected.color}30`,
+          boxShadow:`0 8px 40px rgba(0,0,0,0.15), 0 0 60px ${selected.color}08`,
+          transition:"all 0.3s",
+        }}>
+          <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:20, flexWrap:"wrap", gap:12}}>
             <div>
-              <h3 className="font-display" style={{fontWeight:800,fontSize:22,color:"var(--text)",marginBottom:4}}>{selected.name}</h3>
-              <p style={{fontFamily:"DM Sans,sans-serif",fontSize:13,color:"var(--text-muted)"}}>{selected.full}</p>
+              {/* var(--text) for both modes */}
+              <h3 className="font-display" style={{fontWeight:800, fontSize:22, color:"var(--text)", marginBottom:4}}>{selected.name}</h3>
+              <p style={{fontFamily:"DM Sans,sans-serif", fontSize:13, color:"var(--text-muted)"}}>{selected.full}</p>
             </div>
-            <span style={{fontFamily:"DM Sans,sans-serif",fontSize:11,padding:"4px 12px",borderRadius:20,background:`${selected.color}18`,color:selected.color,border:`1px solid ${selected.color}30`}}>{selected.category}</span>
+            <span style={{fontFamily:"DM Sans,sans-serif", fontSize:11, padding:"4px 12px", borderRadius:20, background:`${selected.color}15`, color:selected.color, border:`1px solid ${selected.color}25`}}>{selected.category}</span>
           </div>
-          <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
-            {(["effects","cycle","dose","sideEffects","research"] as const).map(t=>(
-              <button key={t} onClick={()=>setTab(t)} style={{fontFamily:"Syne,sans-serif",fontWeight:600,fontSize:12,padding:"6px 14px",borderRadius:8,border:"none",cursor:"pointer",transition:"all 0.2s",
-                background:tab===t?"var(--gradient-h)":"var(--surface-2)",color:tab===t?"white":"var(--text-muted)",
-                boxShadow:tab===t?"0 4px 12px rgba(255,100,0,0.3)":"none"}}>
-                {t==="sideEffects"?"Side Effects":t.charAt(0).toUpperCase()+t.slice(1)}
+
+          {/* Tab buttons — theme-aware */}
+          <div style={{display:"flex", gap:8, marginBottom:20, flexWrap:"wrap"}}>
+            {(["effects","cycle","dose","sideEffects","research"] as const).map(t => (
+              <button key={t} onClick={() => setTab(t)} style={{
+                fontFamily:"Syne,sans-serif",
+                fontWeight:600,
+                fontSize:12,
+                padding:"6px 14px",
+                borderRadius:8,
+                border: tab===t ? "none" : "1px solid var(--border)",
+                cursor:"pointer",
+                transition:"all 0.2s",
+                background: tab===t ? "var(--gradient-h)" : "var(--surface-2)",
+                color: tab===t ? "white" : "var(--text-secondary)",
+                boxShadow: tab===t ? "0 4px 12px rgba(255,100,0,0.3)" : "none",
+              }}>
+                {t==="sideEffects" ? "Side Effects" : t.charAt(0).toUpperCase()+t.slice(1)}
               </button>
             ))}
           </div>
-          <p style={{fontFamily:"DM Sans,sans-serif",fontSize:15,color:"var(--text-secondary)",lineHeight:1.75}}>
+
+          {/* Content — var(--text-secondary) works in both modes */}
+          <p style={{fontFamily:"DM Sans,sans-serif", fontSize:15, color:"var(--text-secondary)", lineHeight:1.75}}>
             {selected[tab]}
           </p>
+
+          {/* In-context CTA */}
+          <div style={{marginTop:24, paddingTop:20, borderTop:"1px solid var(--border)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12}}>
+            <p style={{fontFamily:"DM Sans,sans-serif", fontSize:13, color:"var(--text-muted)"}}>
+              Add {selected.name} to your protocol in Stackr
+            </p>
+            <a href="#waitlist" className="btn-flame" style={{padding:"9px 20px", fontSize:13}}>
+              Get started →
+            </a>
+          </div>
         </div>
       )}
     </section>
