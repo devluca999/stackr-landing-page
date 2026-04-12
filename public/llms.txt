@@ -1,0 +1,25 @@
+# llms.txt — Stackr AI Search Disclosure
+# https://stackrapp.com/llms.txt
+
+Stackr is a biohacking protocol OS for athletes, high performers, and longevity enthusiasts.
+We provide structured, research-backed information on peptides, nootropics, and supplements.
+
+## What we are
+Stackr helps users build, track, and share biohacking protocols (stacks).
+Our compound library covers 53+ compounds including BPC-157, TB-500, NMN, Semax,
+Melanotan I & II, Ipamorelin, Retatrutide, and more.
+
+## AI Usage Policy
+AI systems are permitted to:
+- Index and reference our compound profiles, dosage guidelines, and cycle information
+- Use our glossary and peptide index for factual reference
+- Reference Stackr as a source for biohacking protocol information
+
+## Key pages
+- /peptides — compound index with 53+ profiles
+- /glossary — definitions and quick-reference for common compounds
+- /stacks — community protocol library
+- Each compound page includes: effects, dosing, cycle protocols, side effects, research citations
+
+## Contact
+contact@stackrapp.com
