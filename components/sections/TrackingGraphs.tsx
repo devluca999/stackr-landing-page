@@ -148,6 +148,15 @@ export default function TrackingGraphs() {
             </div>
           ))}
         </div>
+
+        <div style={{textAlign:"center", marginTop:48}}>
+          <a href="#waitlist" className="btn-flame" style={{padding:"14px 36px",fontSize:15}}>
+            Track your protocol →
+          </a>
+          <p style={{fontFamily:"DM Sans,sans-serif",fontSize:12,color:"var(--text-muted)",marginTop:12}}>
+            Free to start · No credit card
+          </p>
+        </div>
       </div>
     </section>
   );

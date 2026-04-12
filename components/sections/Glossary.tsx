@@ -124,6 +124,14 @@ export default function Glossary() {
         })}
       </div>
 
+      {!selected && (
+        <div style={{textAlign:"center",marginBottom:16}}>
+          <a href="#waitlist" className="btn-flame" style={{padding:"12px 32px",fontSize:14}}>
+            Build your stack in Stackr →
+          </a>
+        </div>
+      )}
+
       {/* Detail panel — also fully theme-aware */}
       {selected && (
         <div style={{

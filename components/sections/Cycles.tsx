@@ -94,6 +94,11 @@ export default function Cycles() {
             </div>
           ))}
         </div>
+        <div style={{textAlign:"center", marginTop:56}}>
+          <a href="#waitlist" className="btn-flame" style={{padding:"14px 36px",fontSize:15}}>
+            Clone a protocol →
+          </a>
+        </div>
       </div>
     </section>
   );

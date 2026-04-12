@@ -56,7 +56,7 @@ export default function FeaturedStacks() {
           ))}
         </div>
         <div style={{ textAlign:"center", marginTop:48 }}>
-          <a href="#waitlist" className="btn-ghost" style={{ padding:"14px 32px" }}>Browse all stacks →</a>
+          <a href="#waitlist" className="btn-flame" style={{ padding:"14px 32px" }}>Browse all stacks →</a>
         </div>
       </div>
     </section>
