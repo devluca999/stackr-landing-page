@@ -11,9 +11,8 @@ const STACKS = [
 
 export default function FeaturedStacks() {
   return (
-    <section id="stacks" style={{ padding:"120px 48px", background:"var(--surface)", position:"relative", overflow:"hidden" }}>
-      <div className="hex-pattern" style={{ position:"absolute", inset:0, opacity:0.5, pointerEvents:"none" }}/>
-      <div style={{ maxWidth:1100, margin:"0 auto", position:"relative" }}>
+    <section style={{ padding:"120px 48px" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <div style={{ textAlign:"center", marginBottom:72 }}>
           <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:12, fontWeight:500, letterSpacing:"0.12em", color:"var(--flame-2)", textTransform:"uppercase", marginBottom:14 }}>Protocol Library</p>
           <h2 className="font-display" style={{ fontSize:"clamp(34px,5vw,54px)", fontWeight:800, color:"var(--text)", letterSpacing:"-0.03em", lineHeight:1.08 }}>
@@ -25,19 +24,30 @@ export default function FeaturedStacks() {
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))", gap:18 }}>
           {STACKS.map((s,i) => (
-            <div key={i} className="card-base" style={{ padding:"24px" }}>
+            <div key={i} style={{
+              background:"rgba(17,17,17,0.78)",
+              backdropFilter:"blur(16px)",
+              WebkitBackdropFilter:"blur(16px)",
+              border:"1px solid rgba(255,255,255,0.07)",
+              borderRadius:18,
+              padding:"24px",
+              boxShadow:"0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+              transition:"transform 0.2s, border-color 0.2s, box-shadow 0.2s",
+            }}
+            onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="translateY(-4px)";(e.currentTarget as HTMLElement).style.borderColor="rgba(255,106,0,0.22)";(e.currentTarget as HTMLElement).style.boxShadow="0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,106,0,0.12)";}}
+            onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="";(e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,0.07)";(e.currentTarget as HTMLElement).style.boxShadow="0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)";}}>
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:12 }}>
                 <div>
-                  <h3 className="font-display" style={{ fontWeight:700, fontSize:16, color:"var(--text)", marginBottom:3, letterSpacing:"-0.01em" }}>{s.name}</h3>
+                  <h3 className="font-display" style={{ fontWeight:700, fontSize:16, color:"var(--text)", marginBottom:3 }}>{s.name}</h3>
                   <span style={{ fontFamily:"DM Sans,sans-serif", fontSize:11, color:"var(--text-muted)" }}>{s.by}</span>
                 </div>
                 <button className="btn-flame" style={{ padding:"7px 16px", fontSize:12, flexShrink:0 }}>Clone</button>
               </div>
               <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:13, color:"var(--text-secondary)", lineHeight:1.65, marginBottom:14 }}>{s.desc}</p>
               <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:14 }}>
-                {s.tags.map(t=><span key={t} style={{ fontFamily:"DM Sans,sans-serif", fontSize:10, padding:"3px 9px", borderRadius:20, background:"var(--surface-2)", color:"var(--text-muted)", border:"1px solid var(--border)", textTransform:"uppercase", letterSpacing:"0.05em" }}>{t}</span>)}
+                {s.tags.map(t=><span key={t} style={{ fontFamily:"DM Sans,sans-serif", fontSize:10, padding:"3px 9px", borderRadius:20, background:"rgba(255,255,255,0.05)", color:"var(--text-muted)", border:"1px solid rgba(255,255,255,0.08)", textTransform:"uppercase", letterSpacing:"0.05em" }}>{t}</span>)}
               </div>
-              <div style={{ display:"flex", gap:20, paddingTop:12, borderTop:"1px solid var(--border)" }}>
+              <div style={{ display:"flex", gap:20, paddingTop:12, borderTop:"1px solid rgba(255,255,255,0.07)" }}>
                 <div><span className="flame-text font-display" style={{ fontWeight:700, fontSize:16 }}>{s.clones}</span><span style={{ fontFamily:"DM Sans,sans-serif", fontSize:11, color:"var(--text-muted)", marginLeft:4 }}>clones</span></div>
                 <div><span className="flame-text font-display" style={{ fontWeight:700, fontSize:16 }}>{s.compounds}</span><span style={{ fontFamily:"DM Sans,sans-serif", fontSize:11, color:"var(--text-muted)", marginLeft:4 }}>compounds</span></div>
                 <div><span className="flame-text font-display" style={{ fontWeight:700, fontSize:16 }}>★ {s.rating}</span></div>

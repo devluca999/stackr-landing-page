@@ -14,16 +14,29 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main>
+      {/* 
+        Persistent hex grid that covers the ENTIRE page.
+        All section backgrounds are transparent or glass —
+        they float above this layer rather than replacing it.
+      */}
+      <div
+        aria-hidden="true"
+        style={{
+          position:"fixed", inset:0, zIndex:0, pointerEvents:"none",
+          backgroundImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0-4.3L52.5 48V20L28 4.3 3.5 20v28L28 61.7z' fill='none' stroke='rgba(255%2C106%2C0%2C0.07)' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundSize:"56px 100px",
+        }}
+      />
+      <main style={{ position:"relative", zIndex:1 }}>
         <Hero />
-        <HowItWorks />
-        <FeaturedStacks />
+        <div id="features"><HowItWorks /></div>
+        <div id="stacks"><FeaturedStacks /></div>
         <Cycles />
-        <TrackingGraphs />
+        <div id="compounds"><TrackingGraphs /></div>
         <Glossary />
         <MidCTA />
-        <Pricing />
-        <FinalCTA />
+        <div id="pricing"><Pricing /></div>
+        <div id="waitlist"><FinalCTA /></div>
       </main>
       <Footer />
     </>
