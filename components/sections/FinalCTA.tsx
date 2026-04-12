@@ -1,5 +1,6 @@
 "use client";
 import { WaitlistForm } from "./Hero";
+import CompoundLogoWeb from "../ui/CompoundLogoWeb";
 
 export default function FinalCTA() {
   return (
@@ -14,13 +15,8 @@ export default function FinalCTA() {
       </svg>
 
       <div style={{ maxWidth:640, margin:"0 auto", textAlign:"center", position:"relative" }}>
-        {/* Logo mark */}
         <div style={{ display:"flex", justifyContent:"center", marginBottom:32 }}>
-          <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-            <polygon points="26,2 50,15 50,37 26,50 2,37 2,15" fill="url(#finalgrad)"/>
-            <text x="26" y="33" textAnchor="middle" fill="white" fontFamily="Syne,sans-serif" fontWeight="800" fontSize="20">S</text>
-            <defs><linearGradient id="finalgrad" x1="0" y1="0" x2="52" y2="52"><stop offset="0%" stopColor="#FF3D00"/><stop offset="100%" stopColor="#FFC700"/></linearGradient></defs>
-          </svg>
+          <CompoundLogoWeb size={56} id="finalcta-logo" />
         </div>
         <h2 className="font-display" style={{ fontSize:"clamp(38px,6vw,64px)", fontWeight:800, color:"var(--text)", letterSpacing:"-0.04em", lineHeight:0.95, marginBottom:20 }}>
           Your best self<br/>has a <span className="flame-text">protocol.</span>

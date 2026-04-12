@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import CompoundLogoWeb from "../ui/CompoundLogoWeb";
 
 const WORDS = ["recovery.", "performance.", "longevity.", "focus.", "sleep.", "hormones."];
 
@@ -88,8 +89,8 @@ export default function Hero() {
       </svg>
 
       {/* Badge */}
-      <div className="animate-fade-in" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"5px 16px 5px 7px",borderRadius:30,background:"var(--surface)",border:"1px solid var(--border-warm)",marginBottom:32,boxShadow:"0 2px 12px rgba(255,106,0,0.1)"}}>
-        <span style={{background:"var(--gradient-h)",borderRadius:20,padding:"2px 10px",fontFamily:"Syne,sans-serif",fontWeight:700,fontSize:10,color:"white",letterSpacing:"0.08em"}}>NEW</span>
+      <div className="animate-fade-in" style={{display:"inline-flex",alignItems:"center",gap:8,padding:"5px 16px 5px 8px",borderRadius:30,background:"var(--surface)",border:"1px solid var(--border-warm)",marginBottom:32,boxShadow:"0 2px 12px rgba(255,106,0,0.1)"}}>
+        <CompoundLogoWeb size={22} id="hero-badge-logo" />
         <span style={{fontFamily:"DM Sans,sans-serif",fontSize:13,color:"var(--text-secondary)"}}>The biohacking protocol OS is here</span>
       </div>
 
