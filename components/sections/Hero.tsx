@@ -10,6 +10,8 @@ const CAROUSEL = [
   { name:"Attia Longevity Core", tags:["Metformin","SGLT2","Omega-3"], clones:"5.1k", color:"#FFC700" },
   { name:"Flow State Protocol", tags:["Alpha-GPC","L-Theanine","Semax"], clones:"3.8k", color:"#FF6A00" },
   { name:"Deep Sleep Stack", tags:["Mag-L-Threonate","Glycine","Apigenin"], clones:"4.2k", color:"#FF9E00" },
+  { name:"Tanning & Libido Stack", tags:["Melanotan II","PT-141","Berberine"], clones:"2.1k", color:"#FF6A00" },
+  { name:"Skin Optimization", tags:["Melanotan I","GHK-Cu","Collagen"], clones:"1.8k", color:"#FF9E00" },
   { name:"Wolverine Recovery", tags:["BPC-157","TB-500","GHK-Cu"], clones:"8.2k", color:"#FF3D00" },
   { name:"Bryan Johnson Blueprint", tags:["NMN","Rapamycin","Acarbose"], clones:"12.4k", color:"#FF6A00" },
   { name:"Huberman Morning Stack", tags:["AG1","Creatine","Vit D3"], clones:"6.9k", color:"#FF9E00" },

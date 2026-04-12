@@ -56,12 +56,29 @@ const PEPTIDES = [
     sideEffects:"Nausea, reduced appetite (dose-dependent). Muscle loss if protein intake insufficient. Not for type 1 diabetics.",
     research:"Phase 3 trials ongoing (2024–2025). Phase 2 showed exceptional results. Most promising metabolic peptide in pipeline.",
   },
+  {
+    name:"Melanotan I", full:"Afamelanotide (MT-I)", category:"Skin & Performance",
+    badge:"FDA-Approved Form", color:"#FF9E00",
+    effects:"Non-selective melanocortin receptor agonist. Potent tanning without UV exposure. FDA-approved as Scenesse for erythropoietic protoporphyria. May reduce appetite and inflammation. Longer half-life and cleaner safety profile than MT-II.",
+    cycle:"0.5–2mg SubQ every 3–4 days for 2–3 weeks to build a base tan, then 1mg/week maintenance. No desensitization cycle required.",
+    dose:"0.5–2mg SubQ. Start at 0.5mg to assess tolerance. Scenesse implant is FDA-approved at 16mg every 2 months for EPP patients.",
+    sideEffects:"Nausea and flushing for 30–60 mins post-injection, especially early doses. Darkening of existing moles — monitor closely. Spontaneous erections less common than MT-II. Fatigue at high doses.",
+    research:"FDA-approved as Scenesse for EPP since 2019. Extensive clinical trial history. Best-characterized melanocortin peptide safety profile.",
+  },
+  {
+    name:"Melanotan II", full:"Melanotan II (MT-II)", category:"Skin, Libido & Fat Loss",
+    badge:"Multi-target", color:"#FF6A00",
+    effects:"Melanocortin 1/3/4/5 receptor agonist. Stronger tanning than MT-I. Significant appetite suppression via MC4R. Libido and erectile function enhancement. Some thermogenic fat loss. More potent but shorter acting than MT-I.",
+    cycle:"0.25–1mg SubQ daily for 10–14 days loading, then 0.5mg 2–3x/week maintenance. Cycle 8 weeks on, 4 weeks off.",
+    dose:"0.25–1mg SubQ. Always start at 0.25mg to assess tolerance. Nasal spray available but ~80% less bioavailable than SubQ injection.",
+    sideEffects:"Nausea and facial flushing (diminish after first week). Spontaneous erections. Yawning. Darkening of moles and freckles. Monitor all skin lesions. Avoid with personal or family history of melanoma.",
+    research:"Developed at University of Arizona. Extensive research on tanning, libido, and appetite suppression. Not FDA-approved — research use only. Long-term safety data limited.",
+  },
 ];
 
 export default function Glossary() {
   const [active, setActive] = useState<string|null>(null);
   const [tab, setTab] = useState<"effects"|"cycle"|"dose"|"sideEffects"|"research">("effects");
-
   const selected = PEPTIDES.find(p=>p.name===active);
 
   return (
@@ -71,12 +88,12 @@ export default function Glossary() {
         <h2 className="font-display" style={{fontSize:"clamp(34px,5vw,54px)",fontWeight:800,color:"var(--text)",letterSpacing:"-0.03em",lineHeight:1.08}}>
           Know your<br/><span className="flame-text">compounds.</span>
         </h2>
-        <p style={{fontFamily:"DM Sans,sans-serif",fontSize:16,color:"var(--text-secondary)",maxWidth:460,margin:"16px auto 0",lineHeight:1.65}}>
-          Every compound in Stackr comes with research-backed profiles — effects, dosing, cycles, and side effects — so you optimize with confidence.
+        <p style={{fontFamily:"DM Sans,sans-serif",fontSize:16,color:"var(--text-secondary)",maxWidth:480,margin:"16px auto 0",lineHeight:1.65}}>
+          Every compound in Stackr comes with research-backed profiles — effects, dosing, cycles, and side effects. MT-I, MT-II, BPC-157, Semax and more.
         </p>
       </div>
 
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:12,marginBottom:32}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(150px,1fr))",gap:12,marginBottom:32}}>
         {PEPTIDES.map(p=>(
           <button key={p.name} onClick={()=>{setActive(active===p.name?null:p.name);setTab("effects");}}
             style={{padding:"16px 14px",borderRadius:14,background:active===p.name?"var(--surface-2)":"var(--surface)",
@@ -85,7 +102,7 @@ export default function Glossary() {
               boxShadow:active===p.name?`0 0 20px ${p.color}18`:"var(--shadow-card)"}}>
             <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:6}}>
               <div style={{width:6,height:6,borderRadius:"50%",background:p.color,boxShadow:`0 0 5px ${p.color}`}}/>
-              <span style={{fontFamily:"Syne,sans-serif",fontWeight:700,fontSize:13,color:"var(--text)"}}>{p.name}</span>
+              <span style={{fontFamily:"Syne,sans-serif",fontWeight:700,fontSize:12,color:"var(--text)"}}>{p.name}</span>
             </div>
             <div style={{fontFamily:"DM Sans,sans-serif",fontSize:10,color:"var(--text-muted)",marginBottom:8,lineHeight:1.4}}>{p.category}</div>
             <div style={{fontFamily:"DM Sans,sans-serif",fontSize:9,padding:"2px 7px",borderRadius:10,background:`${p.color}18`,color:p.color,border:`1px solid ${p.color}30`,display:"inline-block",letterSpacing:"0.04em"}}>{p.badge}</div>
@@ -94,7 +111,7 @@ export default function Glossary() {
       </div>
 
       {selected && (
-        <div style={{padding:"28px 28px",borderRadius:18,background:"var(--surface)",border:`1px solid ${selected.color}30`,boxShadow:`0 8px 40px rgba(0,0,0,0.3), 0 0 60px ${selected.color}10`,transition:"all 0.3s"}}>
+        <div style={{padding:"28px",borderRadius:18,background:"var(--surface)",border:`1px solid ${selected.color}30`,boxShadow:`0 8px 40px rgba(0,0,0,0.3), 0 0 60px ${selected.color}10`,transition:"all 0.3s"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
             <div>
               <h3 className="font-display" style={{fontWeight:800,fontSize:22,color:"var(--text)",marginBottom:4}}>{selected.name}</h3>
