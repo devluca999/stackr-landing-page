@@ -26,10 +26,11 @@ export default function Nav() {
 
   // All primary nav items are anchor-based (single page experience)
   const NAV_LINKS = [
-    { href:"#features",   label:"How It Works" },
-    { href:"#stacks",     label:"Stacks" },
-    { href:"#compounds",  label:"Compounds" },
-    { href:"#pricing",    label:"Pricing" },
+    { href:"#features",  label:"How It Works" },
+    { href:"#stacks",    label:"Stacks" },
+    { href:"#compounds", label:"Compounds" },
+    { href:"#tracking",  label:"Progress" },
+    { href:"#pricing",   label:"Pricing" },
   ];
 
   return (
@@ -43,7 +44,7 @@ export default function Nav() {
       transition:"all 0.3s",
     }}>
 
-      <a href="#" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
+      <a href="/" style={{ display:"flex", alignItems:"center", gap:10, textDecoration:"none" }}>
         <CompoundLogoWeb size={28} id="nav-logo" />
         <span style={{ fontFamily:"Syne,sans-serif", fontWeight:800, fontSize:15, letterSpacing:"0.12em", color:"var(--text)" }}>STACKR</span>
       </a>

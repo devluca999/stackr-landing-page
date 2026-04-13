@@ -32,11 +32,6 @@ export default function HowItWorks() {
         <a href="#waitlist" className="btn-flame" style={{ padding:"14px 40px", fontSize:15 }}>Start optimizing now →</a>
         <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:12, color:"var(--text-muted)", marginTop:12 }}>Free to start · No credit card required</p>
       </div>
-      <div style={{textAlign:"center", marginTop:56}}>
-        <a href="#waitlist" className="btn-flame" style={{padding:"14px 36px",fontSize:15}}>
-          Start optimizing now →
-        </a>
-      </div>
     </section>
   );
 }

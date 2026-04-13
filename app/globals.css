@@ -155,12 +155,4 @@ input[type="email"]::placeholder { color: var(--text-muted); }
 ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 2px; }
 
 /* ── Anchor scroll offset — compensates for 68px fixed nav ── */
-html { scroll-padding-top: 88px; }
-section[id], div[id] { scroll-margin-top: 88px; }
-
-html {
-  scroll-padding-top: 88px;
-}
-section[id], div[id] {
-  scroll-margin-top: 88px;
-}
+html { scroll-padding-top: 68px; }

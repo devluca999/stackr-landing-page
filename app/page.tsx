@@ -29,14 +29,14 @@ export default function Home() {
       />
       <main style={{ position:"relative", zIndex:1 }}>
         <Hero />
-        <div id="features"><HowItWorks /></div>
-        <div id="stacks"><FeaturedStacks /></div>
+        <section id="features" style={{ scrollMarginTop:"68px" }}><HowItWorks /></section>
+        <section id="stacks" style={{ scrollMarginTop:"68px" }}><FeaturedStacks /></section>
         <Cycles />
-        <TrackingGraphs />
-        <div id="compounds"><Glossary /></div>
+        <section id="tracking" style={{ scrollMarginTop:"68px" }}><TrackingGraphs /></section>
+        <section id="compounds" style={{ scrollMarginTop:"68px" }}><Glossary /></section>
         <MidCTA />
-        <div id="pricing"><Pricing /></div>
-        <div id="waitlist"><FinalCTA /></div>
+        <section id="pricing" style={{ scrollMarginTop:"68px" }}><Pricing /></section>
+        <section id="waitlist" style={{ scrollMarginTop:"68px" }}><FinalCTA /></section>
       </main>
       <Footer />
     </>

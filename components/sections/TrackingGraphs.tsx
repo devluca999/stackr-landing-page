@@ -59,6 +59,9 @@ export default function TrackingGraphs() {
           <p style={{fontFamily:"DM Sans,sans-serif",fontSize:16,color:"var(--text-secondary)",maxWidth:440,margin:"16px auto 0",lineHeight:1.65}}>
             Daily check-ins take 60 seconds. Watch your metrics trend as your stack kicks in over weeks.
           </p>
+          <div style={{marginTop:20}}>
+            <a href="#waitlist" className="btn-ghost" style={{padding:"10px 24px",fontSize:14}}>Log your progress →</a>
+          </div>
         </div>
 
         {/* Glass card floating above hex bg */}
