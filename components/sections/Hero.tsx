@@ -21,28 +21,49 @@ const CAROUSEL = [
   { name:"Deep Sleep Stack", tags:["Mag-L-Threonate","Glycine","Apigenin"], clones:"4.2k", color:"#FF9E00" },
 ];
 
-export function WaitlistForm({ compact=false }: { compact?: boolean }) {
+export function WaitlistForm({ compact=false, source="landing_page" }: { compact?: boolean; source?: string }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
+  const [status, setStatus] = useState<"idle"|"loading"|"success"|"duplicate"|"error">("idle");
+
   const submit = async (e: React.FormEvent) => {
-    e.preventDefault(); setStatus("loading");
+    e.preventDefault();
+    setStatus("loading");
     try {
-      const r = await fetch("/api/waitlist",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email})});
-      setStatus(r.ok?"success":"error");
-    } catch { setStatus("error"); }
+      const r = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setStatus(data.message === "already_registered" ? "duplicate" : "success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
-  if (status==="success") return (
+
+  if (status === "success") return (
     <div style={{padding:compact?"12px 24px":"16px 32px",borderRadius:12,background:"rgba(255,106,0,0.08)",border:"1px solid rgba(255,106,0,0.2)",textAlign:"center"}}>
       <span className="flame-text font-display" style={{fontWeight:700,fontSize:compact?15:18}}>You&apos;re on the list. 🔥 We&apos;ll be in touch soon.</span>
     </div>
   );
+
+  if (status === "duplicate") return (
+    <div style={{padding:compact?"12px 24px":"16px 32px",borderRadius:12,background:"rgba(255,106,0,0.06)",border:"1px solid rgba(255,106,0,0.15)",textAlign:"center"}}>
+      <span style={{fontFamily:"DM Sans,sans-serif",fontWeight:600,fontSize:compact?14:16,color:"var(--flame-2)"}}>You&apos;re already on the list — we&apos;ll reach out soon. 👊</span>
+    </div>
+  );
+
   return (
     <form onSubmit={submit} style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:compact?"flex-start":"center"}}>
       <input type="email" placeholder="your@email.com" value={email} onChange={e=>setEmail(e.target.value)} required style={{flex:1,minWidth:200,padding:compact?"11px 16px":"14px 18px"}}/>
       <button type="submit" className="btn-flame" style={{padding:compact?"11px 22px":"14px 28px",opacity:status==="loading"?0.7:1}} disabled={status==="loading"}>
         {status==="loading"?"Joining...":"Get Early Access →"}
       </button>
-      {status==="error"&&<p style={{width:"100%",fontSize:12,color:"var(--flame-2)"}}>Something went wrong. Try again.</p>}
+      {status==="error" && <p style={{width:"100%",fontSize:12,color:"var(--flame-2)"}}>Something went wrong — please try again.</p>}
     </form>
   );
 }
