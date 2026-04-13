@@ -5,14 +5,14 @@ const SPOTS_LEFT = 247; // visual urgency — update before launch
 
 const PLANS = {
   monthly: [
-    { id:"free", name:"Free", price:"$0", period:"forever", priceYearly:null, desc:"Get started and explore the network.", cta:"Download Free", highlight:false, badge:null, features:["1 active stack","Browse public stacks","Clone up to 3 stacks","Basic compound library","Community access"] },
-    { id:"pro", name:"Pro", price:"$9.99", period:"/month", priceYearly:"$5.00", desc:"For serious optimizers. Everything, unlimited.", cta:"Start 7-Day Free Trial", highlight:true, badge:"Most Popular", features:["Unlimited stacks","Full tracking & analytics","Unlimited cloning & remixing","AI protocol suggestions","Priority compound data","Shareable protocol cards","7-day free trial included"] },
-    { id:"early", name:"Early Optimizer", price:"$4.99", period:"/month forever", priceYearly:null, desc:"Founding member rate. Locked permanently. Never goes up.", cta:"Claim Your Spot →", highlight:false, badge:"⚡ Limited", features:["Everything in Pro","Early Optimizer badge","Direct product input","Lifetime rate lock","Early feature access"] },
+    { id:"free", name:"Free", price:"$0", period:"forever", desc:"Get started and explore the network.", cta:"Start Free", highlight:false, badge:null, earlyNote:null, features:["1 active stack","Browse public stacks","Clone up to 3 stacks","Basic compound library","Community access"] },
+    { id:"pro", name:"Pro", price:"$9.99", period:"/month", desc:"For serious optimizers. Everything, unlimited.", cta:"Start 7-Day Free Trial", highlight:true, badge:"Most Popular", earlyNote:null, features:["Unlimited stacks","Full tracking & analytics","Unlimited cloning & remixing","AI protocol suggestions","Priority compound data","Shareable protocol cards","7-day free trial included"] },
+    { id:"early", name:"Early Optimizer", price:"$4.99", period:"/month forever", desc:"Founding member rate. Locked permanently. Never goes up.", cta:"Claim Your Spot →", highlight:false, badge:"⚡ Limited", earlyNote:null, features:["Everything in Pro","Early Optimizer badge","Direct product input","Lifetime rate lock","Early feature access"] },
   ],
   yearly: [
-    { id:"free", name:"Free", price:"$0", period:"forever", priceYearly:null, desc:"Get started and explore the network.", cta:"Download Free", highlight:false, badge:null, features:["1 active stack","Browse public stacks","Clone up to 3 stacks","Basic compound library","Community access"] },
-    { id:"pro", name:"Pro", price:"$59.99", period:"/year", priceYearly:"$5.00", desc:"Best value — 2 months free. Everything, unlimited.", cta:"Start 7-Day Free Trial", highlight:true, badge:"Best Value", features:["Unlimited stacks","Full tracking & analytics","Unlimited cloning & remixing","AI protocol suggestions","Priority compound data","Shareable protocol cards","7-day free trial included","2 months free vs monthly"] },
-    { id:"early", name:"Early Optimizer", price:"$4.99", period:"/month forever", priceYearly:null, desc:"Founding member rate. Locked permanently. Never goes up.", cta:"Claim Your Spot →", highlight:false, badge:"⚡ Limited", features:["Everything in Pro","Early Optimizer badge","Direct product input","Lifetime rate lock","Early feature access"] },
+    { id:"free", name:"Free", price:"$0", period:"forever", desc:"Get started and explore the network.", cta:"Start Free", highlight:false, badge:null, earlyNote:null, features:["1 active stack","Browse public stacks","Clone up to 3 stacks","Basic compound library","Community access"] },
+    { id:"pro", name:"Pro", price:"$59.99", period:"/year", desc:"Best value — 2 months free. Everything, unlimited.", cta:"Start 7-Day Free Trial", highlight:true, badge:"Best Value", earlyNote:null, features:["Unlimited stacks","Full tracking & analytics","Unlimited cloning & remixing","AI protocol suggestions","Priority compound data","Shareable protocol cards","7-day free trial included","2 months free vs monthly"] },
+    { id:"early", name:"Early Optimizer", price:"$4.99", period:"/month forever", desc:"Founding member rate — stays $4.99/mo even if you pay yearly.", cta:"Claim Your Spot →", highlight:false, badge:"⚡ Limited", earlyNote:"Price lock applies on any billing cycle", features:["Everything in Pro","Early Optimizer badge","Direct product input","Lifetime rate lock","Early feature access"] },
   ],
 };
 
@@ -34,7 +34,7 @@ export default function Pricing() {
   const plans = PLANS[billing];
 
   return (
-    <section style={{ padding:"120px 48px", maxWidth:1100, margin:"0 auto" }}>
+    <section style={{ padding:"80px 48px", maxWidth:1100, margin:"0 auto" }}>
       <div style={{ textAlign:"center", marginBottom:56 }}>
         <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:12, fontWeight:500, letterSpacing:"0.12em", color:"var(--flame-2)", textTransform:"uppercase", marginBottom:14 }}>Pricing</p>
         <h2 className="font-display" style={{ fontSize:"clamp(34px,5vw,54px)", fontWeight:800, color:"var(--text)", letterSpacing:"-0.03em", lineHeight:1.08 }}>
@@ -88,10 +88,17 @@ export default function Pricing() {
               <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:13, color:"var(--text-secondary)", lineHeight:1.6 }}>{p.desc}</p>
             </div>
 
-            <a href="#waitlist" className={p.highlight ? "btn-flame" : "btn-ghost"}
+            <a href="#waitlist" className={p.highlight ? "btn-flame" : p.id === "free" ? "btn-ghost" : "btn-ghost"}
               style={{ width:"100%", padding:"14px 20px", marginBottom:24, display:"block", textAlign:"center", fontSize:14, fontWeight:700,
                 ...(p.id==="early" ? { background:"linear-gradient(135deg,#FF3D00,#FF6A00)", color:"white", border:"none", borderRadius:10 } : {}),
               }}>{p.cta}</a>
+
+            {/* Early Optimizer yearly note */}
+            {p.id==="early" && p.earlyNote && (
+              <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:11, color:"var(--text-muted)", textAlign:"center", marginBottom:12, marginTop:-16 }}>
+                {p.earlyNote}
+              </p>
+            )}
 
             <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
               {p.features.map(f => (

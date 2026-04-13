@@ -9,7 +9,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="features" style={{ padding:"120px 48px", maxWidth:1100, margin:"0 auto" }}>
+    <section id="features" style={{ padding:"80px 48px", maxWidth:1100, margin:"0 auto" }}>
       <div style={{ textAlign:"center", marginBottom:72 }}>
         <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:12, fontWeight:500, letterSpacing:"0.12em", color:"var(--flame-2)", textTransform:"uppercase", marginBottom:14 }}>How It Works</p>
         <h2 className="font-display" style={{ fontSize:"clamp(34px,5vw,54px)", fontWeight:800, color:"var(--text)", letterSpacing:"-0.03em", lineHeight:1.08 }}>

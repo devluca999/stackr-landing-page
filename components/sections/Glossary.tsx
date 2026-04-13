@@ -66,7 +66,7 @@ export default function Glossary() {
   const selected = PEPTIDES.find(p => p.name === active);
 
   return (
-    <section id="compounds" style={{ padding:"120px 48px", maxWidth:1100, margin:"0 auto" }}>
+    <section id="compounds" style={{ padding:"80px 48px", maxWidth:1100, margin:"0 auto" }}>
       {/* Header */}
       <div style={{ textAlign:"center", marginBottom:56 }}>
         <p style={{ fontFamily:"DM Sans,sans-serif", fontSize:12, fontWeight:500, letterSpacing:"0.12em", color:"var(--flame-2)", textTransform:"uppercase", marginBottom:14 }}>Compound Library</p>

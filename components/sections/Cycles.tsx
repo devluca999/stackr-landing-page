@@ -38,7 +38,7 @@ const CYCLES = [
 
 export default function Cycles() {
   return (
-    <section style={{padding:"120px 48px"}}>
+    <section style={{padding:"80px 48px"}}>
       <div style={{maxWidth:1100,margin:"0 auto",position:"relative"}}>
         <div style={{textAlign:"center",marginBottom:72}}>
           <p style={{fontFamily:"DM Sans,sans-serif",fontSize:12,fontWeight:500,letterSpacing:"0.12em",color:"var(--flame-2)",textTransform:"uppercase",marginBottom:14}}>Example Regimens</p>
@@ -52,21 +52,18 @@ export default function Cycles() {
         <div style={{display:"flex",flexDirection:"column",gap:20}}>
           {CYCLES.map((c,i)=>(
             <div key={i} style={{
-              background:"rgba(17,17,17,0.80)",
-              backdropFilter:"blur(20px)",
-              WebkitBackdropFilter:"blur(20px)",
-              border:`1px solid ${c.color}22`,
+              background:"var(--surface)",
+              border:`1px solid ${c.color}25`,
+              borderLeft:`3px solid ${c.color}`,
               borderRadius:20,
-              padding:"28px 28px",
-              boxShadow:`0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)`,
+              padding:"28px",
+              boxShadow:"var(--shadow-card)",
               position:"relative", overflow:"hidden",
             }}>
-              {/* Left accent bar */}
-              <div style={{position:"absolute",left:0,top:0,bottom:0,width:3,background:`linear-gradient(180deg,${c.color},${c.color}00)`}}/>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
                 <div>
                   <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:6}}>
-                    <div style={{width:8,height:8,borderRadius:"50%",background:c.color,boxShadow:`0 0 10px ${c.color}`}}/>
+                    <div style={{width:8,height:8,borderRadius:"50%",background:c.color,boxShadow:`0 0 8px ${c.color}80`,flexShrink:0}}/>
                     <h3 className="font-display" style={{fontWeight:800,fontSize:20,color:"var(--text)",letterSpacing:"-0.02em"}}>{c.name}</h3>
                     <span style={{fontFamily:"DM Sans,sans-serif",fontSize:10,padding:"2px 9px",borderRadius:10,background:`${c.color}18`,color:c.color,border:`1px solid ${c.color}28`}}>{c.badge}</span>
                   </div>
@@ -76,7 +73,7 @@ export default function Cycles() {
               </div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:10,marginBottom:20}}>
                 {c.items.map((item,j)=>(
-                  <div key={j} style={{padding:"12px 14px",borderRadius:12,background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.07)"}}>
+                  <div key={j} style={{padding:"12px 14px",borderRadius:12,background:"var(--surface-2)",border:"1px solid var(--border)"}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
                       <span style={{fontFamily:"Syne,sans-serif",fontWeight:700,fontSize:13,color:"var(--text)"}}>{item.compound}</span>
                       <span style={{fontFamily:"DM Sans,sans-serif",fontSize:11,fontWeight:600,color:c.color}}>{item.dose}</span>
@@ -86,9 +83,9 @@ export default function Cycles() {
                   </div>
                 ))}
               </div>
-              <div style={{padding:"14px 16px",borderRadius:10,background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.06)"}}>
+              <div style={{padding:"14px 16px",borderRadius:10,background:"var(--surface-2)",border:"1px solid var(--border)"}}>
                 <p style={{fontFamily:"DM Sans,sans-serif",fontSize:13,color:"var(--text-secondary)",lineHeight:1.65}}>
-                  <strong style={{color:`${c.color}cc`,fontWeight:600}}>Protocol: </strong>{c.protocol}
+                  <strong style={{color:c.color,fontWeight:600}}>Protocol: </strong>{c.protocol}
                 </p>
               </div>
             </div>

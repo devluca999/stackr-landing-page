@@ -47,7 +47,7 @@ export default function TrackingGraphs() {
   const delta = Math.round(((m.data[m.data.length-1]!-m.data[0]!)/m.data[0]!)*100);
 
   return (
-    <section style={{padding:"120px 48px"}}>
+    <section style={{padding:"80px 48px"}}>
       <div style={{maxWidth:1100, margin:"0 auto"}}>
 
         {/* Header */}
@@ -64,15 +64,13 @@ export default function TrackingGraphs() {
           </div>
         </div>
 
-        {/* Glass card floating above hex bg */}
+        {/* Main card — theme-aware */}
         <div style={{
-          background:"rgba(17,17,17,0.82)",
-          backdropFilter:"blur(24px)",
-          WebkitBackdropFilter:"blur(24px)",
-          border:"1px solid rgba(255,106,0,0.14)",
+          background:"var(--surface)",
+          border:"1px solid var(--border-warm)",
           borderRadius:24,
           padding:"36px 32px",
-          boxShadow:"0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)",
+          boxShadow:"var(--shadow-card)",
           position:"relative", overflow:"hidden",
         }}>
           {/* Corner glow */}
@@ -84,7 +82,7 @@ export default function TrackingGraphs() {
               <button key={k} onClick={()=>setActive(k)} style={{
                 fontFamily:"Syne,sans-serif",fontWeight:600,fontSize:13,
                 padding:"8px 18px",borderRadius:10,border:"none",cursor:"pointer",transition:"all 0.2s",
-                background: active===k ? "var(--gradient-h)" : "rgba(255,255,255,0.05)",
+                background: active===k ? "var(--gradient-h)" : "var(--surface-2)",
                 color: active===k ? "white" : "var(--text-muted)",
                 boxShadow: active===k ? `0 4px 20px ${v.color}40` : "none",
               }}>
@@ -129,7 +127,7 @@ export default function TrackingGraphs() {
           </div>
 
           {/* Protocol note */}
-          <div style={{padding:"14px 18px",borderRadius:12,background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.07)",display:"flex",alignItems:"center",gap:10}}>
+          <div style={{padding:"14px 18px",borderRadius:12,background:"var(--surface-2)",border:"1px solid var(--border)",display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:6,height:6,borderRadius:"50%",background:m.color,boxShadow:`0 0 8px ${m.color}`,flexShrink:0}}/>
             <p style={{fontFamily:"DM Sans,sans-serif",fontSize:13,color:"var(--text-secondary)"}}>
               Protocol active: <strong style={{color:"var(--text)"}}>Wolverine Recovery v2.1</strong> — Day 47 of 84
@@ -144,7 +142,7 @@ export default function TrackingGraphs() {
             {label:"Avg improvement",val:"+31%",sub:"Across all tracked metrics"},
             {label:"Protocol stacks",val:"6,200+",sub:"Active in the community"},
           ].map(s=>(
-            <div key={s.label} style={{padding:"20px",borderRadius:16,background:"rgba(17,17,17,0.7)",backdropFilter:"blur(16px)",border:"1px solid rgba(255,255,255,0.06)",textAlign:"center"}}>
+            <div key={s.label} style={{padding:"20px",borderRadius:16,background:"var(--surface)",border:"1px solid var(--border)",boxShadow:"var(--shadow-card)",textAlign:"center"}}>
               <div style={{fontFamily:"Syne,sans-serif",fontWeight:800,fontSize:26,color:"var(--text)",marginBottom:4}}>{s.val}</div>
               <div style={{fontFamily:"DM Sans,sans-serif",fontSize:11,color:"var(--text-muted)",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
               <div style={{fontFamily:"DM Sans,sans-serif",fontSize:12,color:"var(--text-muted)"}}>{s.sub}</div>
