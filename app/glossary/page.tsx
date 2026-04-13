@@ -7,7 +7,7 @@ import Footer from "../../components/sections/Footer";
 export const metadata: Metadata = {
   title: "Biohacking Glossary — Peptides, Nootropics & Longevity Compounds",
   description: "Complete biohacking glossary. Definitions, dosing, cycles, and side effects for BPC-157, TB-500, NMN, Semax, Melanotan I & II, Ipamorelin, Retatrutide, and 50+ more compounds.",
-  alternates: { canonical: "https://stackrapp.com/glossary" },
+  alternates: { canonical: "https://stackr-online.com/glossary" },
   openGraph: {
     title: "Biohacking Glossary | STACKr",
     description: "Definitions and quick-reference for 50+ biohacking compounds. Peptides, nootropics, longevity supplements and more.",
@@ -19,7 +19,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "name": "STACKr Biohacking Glossary",
-  "url": "https://stackrapp.com/glossary",
+  "url": "https://stackr-online.com/glossary",
   "mainEntity": COMPOUNDS.map(c => ({
     "@type": "Question",
     "name": `What is ${c.name}?`,

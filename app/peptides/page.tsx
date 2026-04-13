@@ -7,7 +7,7 @@ import Footer from "../../components/sections/Footer";
 export const metadata: Metadata = {
   title: "Peptide & Compound Index",
   description: "Complete reference index for 50+ biohacking compounds — peptides, nootropics, longevity supplements. Includes BPC-157, TB-500, NMN, Semax, Melanotan I & II, Ipamorelin, and more with dosing, cycles, and research.",
-  alternates: { canonical: "https://stackrapp.com/peptides" },
+  alternates: { canonical: "https://stackr-online.com/peptides" },
   openGraph: {
     title: "Peptide & Compound Index | STACKr",
     description: "Research-backed profiles for 50+ biohacking compounds. Dosing, cycles, side effects and more.",
@@ -20,12 +20,12 @@ const jsonLd = {
   "@type": "CollectionPage",
   "name": "STACKr Peptide & Compound Index",
   "description": "Complete reference for 50+ biohacking compounds including peptides, nootropics, and longevity supplements.",
-  "url": "https://stackrapp.com/peptides",
+  "url": "https://stackr-online.com/peptides",
   "hasPart": COMPOUNDS.map(c => ({
     "@type": "MedicalSubstance",
     "name": c.name,
     "alternateName": c.full,
-    "url": `https://stackrapp.com/peptides/${c.slug}`,
+    "url": `https://stackr-online.com/peptides/${c.slug}`,
     "description": c.description,
   })),
 };

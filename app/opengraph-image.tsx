@@ -103,14 +103,14 @@ export default async function Image() {
           ))}
         </div>
 
-        {/* stackrapp.com badge */}
+        {/* stackr-online.com badge */}
         <div style={{
           position: 'absolute', bottom: 40, right: 80,
           color: 'rgba(255,255,255,0.3)',
           fontSize: 18,
           display: 'flex',
         }}>
-          stackrapp.com
+          stackr-online.com
         </div>
       </div>
     ),

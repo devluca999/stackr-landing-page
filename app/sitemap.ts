@@ -18,7 +18,7 @@ const STACKS = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://stackrapp.com';
+  const base = 'https://stackr-online.com';
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [

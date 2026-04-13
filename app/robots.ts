@@ -15,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'Googlebot',     allow: '/' },
       { userAgent: 'anthropic-ai',  allow: '/' },
     ],
-    sitemap: 'https://stackrapp.com/sitemap.xml',
-    host:    'https://stackrapp.com',
+    sitemap: 'https://stackr-online.com/sitemap.xml',
+    host:    'https://stackr-online.com',
   };
 }

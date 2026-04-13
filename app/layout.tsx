@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   keywords: ["biohacking","nootropics","peptides","longevity","BPC-157","TB-500","NMN","Semax","Melanotan","Ipamorelin","Retatrutide","supplement stack","protocol tracker","performance optimization","quantified self","Bryan Johnson","Wolverine stack"],
   authors: [{ name: "STACKr" }],
   creator: "STACKr",
-  metadataBase: new URL("https://stackrapp.com"),
+  metadataBase: new URL("https://stackr-online.com"),
   openGraph: {
     title: "Stackr — Protocol OS for Human Optimization.",
     description: "Build, track, and share your peptide and supplement stacks. Clone protocols from 6,000+ optimizers.",
     type: "website",
-    url: "https://stackrapp.com",
+    url: "https://stackr-online.com",
     siteName: "Stackr",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Stackr — Protocol OS" }],
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     creator: "@stackrapp",
     images: ["/opengraph-image"],
   },
-  alternates: { canonical: "https://stackrapp.com" },
+  alternates: { canonical: "https://stackr-online.com" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
 };
 
@@ -32,9 +32,9 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebApplication",
-      "@id": "https://stackrapp.com/#app",
+      "@id": "https://stackr-online.com/#app",
       "name": "STACKr",
-      "url": "https://stackrapp.com",
+      "url": "https://stackr-online.com",
       "description": "Biohacking protocol OS. Build, track, and share supplement stacks — peptides, nootropics, and longevity compounds.",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "iOS, Android",
@@ -50,20 +50,20 @@ const jsonLd = {
     },
     {
       "@type": "Organization",
-      "@id": "https://stackrapp.com/#org",
+      "@id": "https://stackr-online.com/#org",
       "name": "STACKr",
-      "url": "https://stackrapp.com",
+      "url": "https://stackr-online.com",
       "description": "Building the protocol OS for human optimization.",
     },
     {
       "@type": "WebSite",
-      "@id": "https://stackrapp.com/#website",
-      "url": "https://stackrapp.com",
+      "@id": "https://stackr-online.com/#website",
+      "url": "https://stackr-online.com",
       "name": "STACKr",
-      "publisher": { "@id": "https://stackrapp.com/#org" },
+      "publisher": { "@id": "https://stackr-online.com/#org" },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": { "@type": "EntryPoint", "urlTemplate": "https://stackrapp.com/peptides?q={search_term_string}" },
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://stackr-online.com/peptides?q={search_term_string}" },
         "query-input": "required name=search_term_string",
       },
     },

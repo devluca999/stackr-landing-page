@@ -13,7 +13,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${c.name} — Dosage, Cycle & Effects`,
     description: `${c.name} (${c.full}): ${c.description.slice(0, 155)}`,
-    alternates: { canonical: `https://stackrapp.com/peptides/${c.slug}` },
+    alternates: { canonical: `https://stackr-online.com/peptides/${c.slug}` },
     openGraph: {
       title: `${c.name} — ${c.headline}`,
       description: c.description,
@@ -33,7 +33,7 @@ export default function CompoundPage({ params }: { params: { slug: string } }) {
     "name": c.name,
     "alternateName": c.full,
     "description": c.description,
-    "url": `https://stackrapp.com/peptides/${c.slug}`,
+    "url": `https://stackr-online.com/peptides/${c.slug}`,
     "medicineSystem": "Biohacking / Performance Medicine",
     "relevantSpecialty": "Sports Medicine",
     "recognizingAuthority": { "@type": "Organization", "name": "STACKr Research" },
