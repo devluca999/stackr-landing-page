@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
+import { render } from "@react-email/components";
+import WaitlistConfirmation from "../../../emails/WaitlistConfirmation";
 
 export const dynamic = "force-dynamic";
 
-// Use service role for server-side inserts — bypasses RLS entirely
-// (safer than relying on anon key + RLS for a write endpoint)
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -22,17 +25,35 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    const { error } = await supabase
+    // Insert into Supabase
+    const { error: dbError } = await supabase
       .from("waitlist")
       .insert({ email, source });
 
-    if (error) {
-      // Duplicate email — treat as success so we don't leak whether email exists
-      if (error.code === "23505") {
+    if (dbError) {
+      // Duplicate — still send a success response (don't re-send email)
+      if (dbError.code === "23505") {
         return NextResponse.json({ success: true, message: "already_registered" });
       }
-      console.error("[waitlist] Supabase error:", error.message);
+      console.error("[waitlist] DB error:", dbError.message);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
+    }
+
+    // Send confirmation email (non-blocking — don't fail the response if email fails)
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const html = await render(WaitlistConfirmation({ email }));
+        await resend.emails.send({
+          from: "Stackr <hello@stackr-online.com>",
+          to: email,
+          subject: "You're on the Stackr waitlist 🔥",
+          html,
+          replyTo: "hello@stackr-online.com",
+        });
+      } catch (emailErr) {
+        // Log but don't block — user is on the list regardless
+        console.error("[waitlist] Email error:", emailErr);
+      }
     }
 
     return NextResponse.json({ success: true });
